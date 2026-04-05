@@ -1,40 +1,52 @@
 # Finance Dashboard Backend
 
 ## 🚀 Overview
+
 This is a backend system for a finance dashboard that supports:
-- User authentication
-- Role-based access control
-- Transaction management
-- Dashboard analytics
+
+* User authentication
+* Role-based access control
+* Transaction management
+* Dashboard analytics
 
 ---
 
 ## 🛠 Tech Stack
-- Node.js
-- Express.js
-- MongoDB
-- JWT Authentication
+
+* Node.js
+* Express.js
+* MongoDB
+* JWT Authentication
+
+---
+
+## 🌐 Live API
+
+https://finance-backend-93wf.onrender.com
 
 ---
 
 ## 📁 Folder Structure
 
+```
 src/
-controllers/
-models/
-routes/
-middlewares/
-config/
-
+  controllers/
+  models/
+  routes/
+  middlewares/
+  config/
+```
 
 ---
 
 ## 🔐 Authentication APIs
 
 ### Register
+
 POST /api/auth/register
 
 ### Login
+
 POST /api/auth/login
 
 ---
@@ -42,9 +54,11 @@ POST /api/auth/login
 ## 💰 Transaction APIs
 
 ### Create Transaction
+
 POST /api/transactions
 
 Body:
+
 ```json
 {
   "amount": 500,
@@ -52,18 +66,25 @@ Body:
   "category": "food",
   "note": "pizza"
 }
+```
 
-Get Transactions (with pagination & filtering)
+---
+
+### Get Transactions (Pagination + Filtering)
 
 GET /api/transactions?page=1&limit=5&type=expense&category=food
 
-📊 Dashboard API
-Summary
+---
+
+## 📊 Dashboard API
+
+### Summary
 
 GET /api/dashboard/summary
 
 Response:
 
+```json
 {
   "totalIncome": 0,
   "totalExpense": 500,
@@ -72,30 +93,46 @@ Response:
     "food": 500
   }
 }
+```
 
-🔒 Access Control
-Viewer → read only
-Analyst → read + insights
-Admin → full access
-⚠️ Validation
-Required fields check
-Type validation
-Proper error responses (400, 401, 403)
-📌 Features Implemented
-CRUD operations
-Pagination
-Filtering
-Aggregation (dashboard)
-JWT Authentication
-Role-based authorization
+---
 
-▶️ Run Project
+## 🔒 Access Control
+
+* Viewer → read only
+* Analyst → read + insights
+* Admin → full access
+
+---
+
+## ⚠️ Validation
+
+* Required fields check
+* Type validation
+* Proper error responses (400, 401, 403)
+
+---
+
+## 📌 Features Implemented
+
+* CRUD operations
+* Pagination
+* Filtering
+* Aggregation (dashboard)
+* JWT Authentication
+* Role-based authorization
+
+---
+
+## ▶️ Run Project
+
+```bash
 npm install
 npm run dev
-🌍 Base URL
+```
 
-http://localhost:5000
+---
 
-👨‍💻 Author
+## 👨‍💻 Author
 
 Mohit Raj
