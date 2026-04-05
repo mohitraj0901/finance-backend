@@ -5,11 +5,11 @@ import { authorizeRoles } from "../middlewares/roleMiddleware.js";
 
 const router = express.Router();
 
-// Auth routes
+
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 
-// 🔥 TEST ROUTE (admin only)
+
 router.get(
   "/admin",
   protect,

@@ -1,12 +1,12 @@
 import Transaction from "../models/Transaction.js";
 
 
-// ✅ CREATE TRANSACTION
+
 export const createTransaction = async (req, res) => {
   try {
     const { amount, type, category, note } = req.body;
 
-    // 🔥 validation
+    
     if (!amount || !type || !category) {
       return res.status(400).json({
         message: "Amount, type and category are required",
@@ -34,7 +34,7 @@ export const createTransaction = async (req, res) => {
 };
 
 
-// ✅ GET TRANSACTIONS (Pagination + Filtering)
+
 export const getTransactions = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -43,11 +43,11 @@ export const getTransactions = async (req, res) => {
 
     const query = { user: userId };
 
-    // filtering
+    
     if (type) query.type = type;
     if (category) query.category = category;
 
-    // pagination
+    
     const transactions = await Transaction.find(query)
       .skip((page - 1) * limit)
       .limit(Number(limit))
@@ -67,7 +67,7 @@ export const getTransactions = async (req, res) => {
 };
 
 
-// ✅ DELETE TRANSACTION (bonus ⭐)
+
 export const deleteTransaction = async (req, res) => {
   try {
     const transaction = await Transaction.findById(req.params.id);
@@ -76,7 +76,7 @@ export const deleteTransaction = async (req, res) => {
       return res.status(404).json({ message: "Transaction not found" });
     }
 
-    // ensure same user
+    
     if (transaction.user.toString() !== req.user.id) {
       return res.status(403).json({ message: "Not authorized" });
     }

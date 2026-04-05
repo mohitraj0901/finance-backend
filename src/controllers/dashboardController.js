@@ -14,7 +14,7 @@ export const getSummary = async (req, res) => {
       if (t.type === "income") totalIncome += t.amount;
       else totalExpense += t.amount;
 
-      // category breakdown
+      
       if (!categoryBreakdown[t.category]) {
         categoryBreakdown[t.category] = 0;
       }

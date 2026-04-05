@@ -2,35 +2,35 @@ import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-// 🔐 Helper: Generate Token
+
 const generateToken = (id) => {
   return jwt.sign(
     { id },
-    process.env.JWT_SECRET, // env se aayega
+    process.env.JWT_SECRET, 
     { expiresIn: "1d" }
   );
 };
 
-// ================= REGISTER =================
+
 export const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    // validation
+    
     if (!name || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    // check existing user
+    
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "User already exists" });
     }
 
-    // hash password
+    
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // create user
+    
     const user = await User.create({
       name,
       email,
@@ -45,7 +45,7 @@ export const registerUser = async (req, res) => {
         name: user.name,
         email: user.email,
       },
-      token: generateToken(user._id), // optional but strong feature 💪
+      token: generateToken(user._id), 
     });
 
   } catch (error) {
@@ -53,23 +53,23 @@ export const registerUser = async (req, res) => {
   }
 };
 
-// ================= LOGIN =================
+
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // validation
+    
     if (!email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    // check user
+    
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    // check password
+    
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials" });
